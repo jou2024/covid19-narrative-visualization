@@ -69,55 +69,114 @@ function createLineChart(data) {
     const width = window.innerWidth - margin.left - margin.right - 100;
     const height = window.innerHeight - margin.top - margin.bottom - 200;
 
-    const svg = d3.select("#lineChart").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+    // Create a dropdown menu for state selection
+    d3.select("#lineChart").html(`
+        <label for="stateFilter">Select State:</label>
+        <select id="stateFilter"></select>
+        <div id="lineChartContent"></div>
+    `);
 
-    const x = d3.scaleTime()
-        .domain(d3.extent(data, d => new Date(d.month)))
-        .range([0, width]);
+    const states = [...new Set(data.map(d => d.state))];
+    const stateFilterSelect = d3.select("#stateFilter");
 
-    const y = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.monthly_deaths_2022)]).nice()
-        .range([height, 0]);
+    stateFilterSelect.append("option").text("All States").attr("value", "All");
+    states.forEach(state => {
+        stateFilterSelect.append("option").text(state).attr("value", state);
+    });
 
-    svg.append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")));
+    stateFilterSelect.on("change", function() {
+        const selectedState = d3.select(this).node().value;
+        updateChart(selectedState);
+    });
 
-    svg.append("g")
-        .call(d3.axisLeft(y));
+    function updateChart(selectedState) {
+        d3.select("#lineChartContent").html("");
 
-    const line = d3.line()
-        .x(d => x(new Date(d.month)))
-        .y(d => y(d.monthly_deaths_2022));
+        const filteredData = selectedState === "All" ? data : data.filter(d => d.state === selectedState);
 
-    svg.append("path")
-        .datum(data)
-        .attr("fill", "none")
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", 1.5)
-        .attr("d", line);
+        const svg = d3.select("#lineChartContent").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    svg.selectAll(".dot")
-        .data(data)
-      .enter().append("circle")
-        .attr("class", "dot")
-        .attr("cx", d => x(new Date(d.month)))
-        .attr("cy", d => y(d.monthly_deaths_2022))
-        .attr("r", 5)
-        .on("mouseover", function(event, d) {
-            d3.select(this)
-              .attr("fill", "orange");
-            // Show tooltip or additional data
-        })
-        .on("mouseout", function(event, d) {
-            d3.select(this)
-              .attr("fill", "steelblue");
-            // Hide tooltip or additional data
-        });
+        const x = d3.scaleTime()
+            .domain(d3.extent(filteredData, d => new Date(d.month)))
+            .range([0, width]);
+
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(filteredData, d => +d.monthly_deaths_2022)]).nice()
+            .range([height, 0]);
+
+        svg.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")));
+
+        svg.selectAll(".y-axis").remove(); // Remove the existing y-axis
+        svg.append("g")
+            .attr("class", "y-axis")
+            .call(d3.axisLeft(y));
+            
+
+        const color = d3.scaleOrdinal(d3.schemeCategory10).domain(states);
+
+        const line = d3.line()
+            .x(d => x(new Date(d.month)))
+            .y(d => y(+d.monthly_deaths_2022));
+
+        const stateGroups = d3.groups(filteredData, d => d.state);
+
+        // Add lines for each state
+        svg.selectAll(".line")
+            .data(stateGroups)
+          .enter().append("path")
+            .attr("class", "line")
+            .attr("fill", "none")
+            .attr("stroke", d => color(d[0]))
+            .attr("stroke-width", 1.5)
+            .attr("d", d => line(d[1]))
+            .attr("data-state", d => d[0]);
+
+        // Add dots and tooltips for each state
+        svg.selectAll(".dot")
+            .data(filteredData)
+          .enter().append("circle")
+            .attr("class", "dot")
+            .attr("cx", d => x(new Date(d.month)))
+            .attr("cy", d => y(+d.monthly_deaths_2022))
+            .attr("r", 5)
+            .attr("fill", d => color(d.state))
+            .on("mouseover", function(event, d) {
+                d3.select(this).attr("r", 7);
+                tooltip.transition().duration(200).style("opacity", .9);
+                tooltip.html(`State: ${d.state}<br>Month: ${d.month}<br>Deaths: ${d.monthly_deaths_2022}`)
+                    .style("left", (event.pageX + 5) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this).attr("r", 5);
+                tooltip.transition().duration(500).style("opacity", 0);
+            });
+
+        // Add annotations for state names at the end of each line
+        svg.selectAll(".state-label")
+            .data(stateGroups)
+          .enter().append("text")
+            .attr("class", "state-label")
+            .attr("transform", d => `translate(${width},${y(d[1][d[1].length - 1].monthly_deaths_2022)})`)
+            .attr("dy", ".35em")
+            .attr("text-anchor", "start")
+            .style("fill", d => color(d[0]))
+            .text(d => d[0]);
+
+        // Tooltip setup
+        const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+    }
+
+    // Initialize with all states
+    updateChart("All");
 }
 
 function createStateComparison(data) {

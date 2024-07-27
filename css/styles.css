@@ -125,4 +125,6 @@ select {
     border-radius: 8px;
     pointer-events: none;
 }
-
+.state-label {
+    font: 12px sans-serif;
+}
