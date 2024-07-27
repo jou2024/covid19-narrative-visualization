@@ -39,8 +39,16 @@
         <section id="scene3" class="scene">
             <h2>State Comparison</h2>
             <div id="comparisonChart">
-                <div id="lineChart1"></div>
-                <div id="lineChart2"></div>
+                <!-- Dropdowns and charts will be appended here by D3 -->
+                <label for="state1">Select State 1:</label>
+                <select id="state1"></select>
+                <label for="state2">Select State 2:</label>
+                <select id="state2"></select>
+                <button id="compareButton">Compare</button>
+                <div id="chartsContainer">
+                    <div id="lineChart1"></div>
+                    <div id="lineChart2"></div>
+                </div>
             </div>
         </section>
 
@@ -55,6 +63,6 @@
     </footer>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="js/script.js?v=1.0.0"></script> <!-- Increment version number when updating -->
+    <script src="js/script.js?v=1.0.1"></script> <!-- Increment version number when updating -->
 </body>
 </html>

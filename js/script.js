@@ -125,62 +125,97 @@ function createStateComparison(data) {
     const width = 400 - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
 
-    const states = ["State1", "State2"];  // Replace with actual state names you want to compare
+    // Create dropdown menus for state selection
+    d3.select("#comparisonChart").html(`
+        <label for="state1">Select State 1:</label>
+        <select id="state1"></select>
+        <label for="state2">Select State 2:</label>
+        <select id="state2"></select>
+        <button id="compareButton">Compare</button>
+        <div id="chartsContainer">
+            <div id="lineChart1"></div>
+            <div id="lineChart2"></div>
+        </div>
+    `);
 
-    states.forEach((state, i) => {
-        const svg = d3.select(`#lineChart${i+1}`).append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-            .attr("transform", `translate(${margin.left},${margin.top})`);
+    const states = Array.from(new Set(data.map(d => d.state)));
+    const state1Select = d3.select("#state1");
+    const state2Select = d3.select("#state2");
 
-        const stateData = data.filter(d => d.state === state);
-
-        const x = d3.scaleTime()
-            .domain(d3.extent(stateData, d => new Date(d.month)))
-            .range([0, width]);
-
-        const y = d3.scaleLinear()
-            .domain([0, d3.max(stateData, d => d.monthly_deaths_2022)]).nice()
-            .range([height, 0]);
-
-        svg.append("g")
-            .attr("transform", `translate(0,${height})`)
-            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")));
-
-        svg.append("g")
-            .call(d3.axisLeft(y));
-
-        const line = d3.line()
-            .x(d => x(new Date(d.month)))
-            .y(d => y(d.monthly_deaths_2022));
-
-        svg.append("path")
-            .datum(stateData)
-            .attr("fill", "none")
-            .attr("stroke", "steelblue")
-            .attr("stroke-width", 1.5)
-            .attr("d", line);
-
-        svg.selectAll(".dot")
-            .data(stateData)
-          .enter().append("circle")
-            .attr("class", "dot")
-            .attr("cx", d => x(new Date(d.month)))
-            .attr("cy", d => y(d.monthly_deaths_2022))
-            .attr("r", 5)
-            .on("mouseover", function(event, d) {
-                d3.select(this)
-                  .attr("fill", "orange");
-                // Show tooltip or additional data
-            })
-            .on("mouseout", function(event, d) {
-                d3.select(this)
-                  .attr("fill", "steelblue");
-                // Hide tooltip or additional data
-            });
+    states.forEach(state => {
+        state1Select.append("option").text(state).attr("value", state);
+        state2Select.append("option").text(state).attr("value", state);
     });
+
+    d3.select("#compareButton").on("click", function() {
+        const selectedState1 = d3.select("#state1").node().value;
+        const selectedState2 = d3.select("#state2").node().value;
+        updateCharts(selectedState1, selectedState2);
+    });
+
+    function updateCharts(state1, state2) {
+        d3.select("#lineChart1").html("");
+        d3.select("#lineChart2").html("");
+
+        [state1, state2].forEach((state, i) => {
+            const svg = d3.select(`#lineChart${i + 1}`).append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const stateData = data.filter(d => d.state === state);
+
+            const x = d3.scaleTime()
+                .domain(d3.extent(stateData, d => new Date(d.month)))
+                .range([0, width]);
+
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(stateData, d => +d.monthly_deaths_2022)]).nice()
+                .range([height, 0]);
+
+            svg.append("g")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")));
+
+            svg.append("g")
+                .call(d3.axisLeft(y));
+
+            const line = d3.line()
+                .x(d => x(new Date(d.month)))
+                .y(d => y(+d.monthly_deaths_2022));
+
+            svg.append("path")
+                .datum(stateData)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 1.5)
+                .attr("d", line);
+
+            svg.selectAll(".dot")
+                .data(stateData)
+                .enter().append("circle")
+                .attr("class", "dot")
+                .attr("cx", d => x(new Date(d.month)))
+                .attr("cy", d => y(+d.monthly_deaths_2022))
+                .attr("r", 5)
+                .on("mouseover", function(event, d) {
+                    d3.select(this)
+                        .attr("fill", "orange");
+                    // Show tooltip or additional data
+                })
+                .on("mouseout", function(event, d) {
+                    d3.select(this)
+                        .attr("fill", "steelblue");
+                    // Hide tooltip or additional data
+                });
+        });
+    }
+
+    // Initialize with the first two states
+    updateCharts(states[0], states[1]);
 }
+
 
 // Handle navigation
 document.querySelectorAll('.pagination a').forEach(link => {
