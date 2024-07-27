@@ -2,17 +2,86 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: #f4f4f9;
 }
 
-.scene {
-    width: 80%;
-    height: 600px;
-    margin: 20px 0;
-    background: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+header {
+    text-align: center;
     padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+}
+
+.pagination li {
+    display: inline;
+    margin: 0 5px;
+}
+
+.pagination li a {
+    text-decoration: none;
+    padding: 10px 15px;
+    color: #007bff;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.pagination li a:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+main {
+    padding: 20px;
+}
+
+.scene {
+    margin: 40px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none; /* Hide all scenes by default */
+}
+
+.scene.active {
+    display: block; /* Show the active scene */
+}
+
+.scene h2 {
+    margin-top: 0;
+}
+
+.scene div {
+    flex-grow: 1;
+}
+
+aside {
+    max-width: 300px;
+    margin-left: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
 }

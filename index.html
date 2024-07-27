@@ -7,10 +7,54 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="scene1" class="scene"></div>
-    <div id="scene2" class="scene"></div>
-    <div id="scene3" class="scene"></div>
+    <header>
+        <h1>COVID-19 Narrative Visualization</h1>
+        <p>An interactive exploration of the impact of COVID-19 in the United States during 2022</p>
+    </header>
+
+    <nav>
+        <ul class="pagination">
+            <li><a href="#" data-target="scene1">Total Deaths by State</a></li>
+            <li><a href="#" data-target="scene2">Monthly Death Trends</a></li>
+            <li><a href="#" data-target="scene3">State Comparison</a></li>
+            <li><a href="#" data-target="sceneNext">Next</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="scene1" class="scene">
+            <h2>Total Deaths by State</h2>
+            <div id="barChart"></div>
+            <aside>
+                <h3>Past forecasts</h3>
+                <p>In contrast, just two years ago, the Bush administration projected a surplus by 2012.</p>
+            </aside>
+        </section>
+
+        <section id="scene2" class="scene">
+            <h2>Monthly Death Trends</h2>
+            <div id="lineChart"></div>
+        </section>
+
+        <section id="scene3" class="scene">
+            <h2>State Comparison</h2>
+            <div id="comparisonChart">
+                <div id="lineChart1"></div>
+                <div id="lineChart2"></div>
+            </div>
+        </section>
+
+        <section id="sceneNext" class="scene">
+            <h2>Conclusion</h2>
+            <p>Summary and conclusion of the narrative visualization.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Data source: <a href="https://github.com/nytimes/covid-19-data">The New York Times COVID-19 Data</a></p>
+    </footer>
+
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=1.0.0"></script> <!-- Increment version number when updating -->
 </body>
 </html>
