@@ -208,11 +208,14 @@ function createStateComparison(data) {
             .attr("fill", "steelblue")
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("fill", "orange");
-                // Show tooltip or additional data
+                tooltip.transition().duration(200).style("opacity", .9);
+                tooltip.html(`State: ${state1}<br>Month: ${d.month}<br>Deaths: ${d.monthly_deaths_2022}`)
+                    .style("left", (event.pageX + 5) + "px")
+                    .style("top", (event.pageY - 28) + "px");
             })
             .on("mouseout", function(event, d) {
                 d3.select(this).attr("fill", "steelblue");
-                // Hide tooltip or additional data
+                tooltip.transition().duration(500).style("opacity", 0);
             });
 
         // Add dots for state 2
@@ -226,12 +229,35 @@ function createStateComparison(data) {
             .attr("fill", "orange")
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("fill", "steelblue");
-                // Show tooltip or additional data
+                tooltip.transition().duration(200).style("opacity", .9);
+                tooltip.html(`State: ${state2}<br>Month: ${d.month}<br>Deaths: ${d.monthly_deaths_2022}`)
+                    .style("left", (event.pageX + 5) + "px")
+                    .style("top", (event.pageY - 28) + "px");
             })
             .on("mouseout", function(event, d) {
                 d3.select(this).attr("fill", "orange");
-                // Hide tooltip or additional data
+                tooltip.transition().duration(500).style("opacity", 0);
             });
+
+        // Add annotations for state names
+        svg.append("text")
+            .attr("transform", `translate(${width},${y(stateData1[stateData1.length - 1].monthly_deaths_2022)})`)
+            .attr("dy", ".35em")
+            .attr("text-anchor", "start")
+            .style("fill", "steelblue")
+            .text(state1);
+
+        svg.append("text")
+            .attr("transform", `translate(${width},${y(stateData2[stateData2.length - 1].monthly_deaths_2022)})`)
+            .attr("dy", ".35em")
+            .attr("text-anchor", "start")
+            .style("fill", "orange")
+            .text(state2);
+
+        // Tooltip setup
+        const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
     }
 
     // Initialize with the first two states
