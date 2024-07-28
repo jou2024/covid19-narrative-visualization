@@ -1,23 +1,88 @@
-// Load the data
-d3.csv('data/total_deaths_state_2022.csv').then(totalDeathsData => {
-    console.log("Total Deaths Data Loaded", totalDeathsData); // Debugging
+const yearTabs = document.querySelectorAll('.year-tabs a');
+const sceneTabs = document.querySelectorAll('.scene-tabs a');
+const scenes = document.querySelectorAll('.scene');
 
-    d3.csv('data/monthly_deaths_state_2022.csv').then(monthlyDeathsData => {
-        console.log("Monthly Deaths Data Loaded", monthlyDeathsData); // Debugging
+let currentYear = '2022'; // Default year
 
-        // Initialize the visualizations
-        createBarChart(totalDeathsData);
-        createLineChart(monthlyDeathsData);
-        createStateComparison(monthlyDeathsData);
-    }).catch(error => {
-        console.error("Error loading monthly deaths data: ", error);
+// Event listener for year tabs
+yearTabs.forEach(tab => {
+    tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        currentYear = this.getAttribute('data-year');
+
+        // Update active class for year tabs
+        yearTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        // Load data for the selected year
+        loadDataForYear(currentYear);
     });
-}).catch(error => {
-    console.error("Error loading total deaths data: ", error);
 });
+
+// Event listener for scene tabs
+sceneTabs.forEach(tab => {
+    tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = this.getAttribute('data-target');
+
+        // Update active class for scene tabs
+        sceneTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        // Show the selected scene
+        scenes.forEach(scene => scene.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+    });
+});
+
+// Function to load data for the selected year
+function loadDataForYear(year) {
+    d3.csv(`data/total_deaths_state_${year}.csv`).then(totalDeathsData => {
+        d3.csv(`data/monthly_deaths_state_${year}.csv`).then(monthlyDeathsData => {
+            // Initialize the visualizations
+            createBarChart(totalDeathsData);
+            createLineChart(monthlyDeathsData);
+            createStateComparison(monthlyDeathsData);
+        }).catch(error => {
+            console.error(`Error loading monthly deaths data for ${year}: `, error);
+        });
+    }).catch(error => {
+        console.error(`Error loading total deaths data for ${year}: `, error);
+    });
+}
+
+// Initial load for the default year
+loadDataForYear(currentYear);
+
+// Helper function to get monthly deaths based on the selected year
+function getMonthlyDeaths(d, year) {
+    console.log("Input year for getMonthlyDeaths  ", year); // Debugging
+    console.log("Input d for getMonthlyDeaths  ", d); // Debugging
+    if (year === '2020') {
+        return +d.monthly_deaths_2020;
+    } else if (year === '2021') {
+        return +d.monthly_deaths_2021;
+    } else if (year === '2022') {
+        return +d.monthly_deaths_2022;
+    }
+    return 0; // Default case, should not happen if the year is correctly set
+}
+
+function getTotalDeaths(d, year) {
+    if (year === '2020') {
+        return +d.total_deaths_2020;
+    } else if (year === '2021') {
+        return +d.total_deaths_2021;
+    } else if (year === '2022') {
+        return +d.total_deaths_2022;
+    }
+    return 0; // Default case, should not happen if the year is correctly set
+}
 
 function createBarChart(data) {
     console.log("Start to run createBarChart"); // Debugging
+    d3.select("#barChart").html(""); // Clear existing chart
+
     const margin = { top: 20, right: 30, bottom: 40, left: 90 };
     const width = window.innerWidth - margin.left - margin.right - 100;
     const height = window.innerHeight - margin.top - margin.bottom - 200;
@@ -29,7 +94,7 @@ function createBarChart(data) {
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
     const x = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.total_deaths_2022)]).nice()
+        .domain([0, d3.max(data, d => getTotalDeaths(d, currentYear))]).nice()
         .range([0, width]);
 
     const y = d3.scaleBand()
@@ -50,7 +115,7 @@ function createBarChart(data) {
         .attr("class", "bar")
         .attr("x", 0)
         .attr("y", d => y(d.state))
-        .attr("width", d => x(d.total_deaths_2022))
+        .attr("width", d => x(getTotalDeaths(d, currentYear)))
         .attr("height", y.bandwidth())
         .on("mouseover", function(event, d) {
             d3.select(this)
@@ -65,11 +130,14 @@ function createBarChart(data) {
 }
 
 function createLineChart(data) {
+    console.log("Start createLineChart"); // Debugging
+    d3.select("#lineChart").html(""); // Clear existing chart
+
     const margin = { top: 20, right: 30, bottom: 40, left: 90 };
     const width = window.innerWidth - margin.left - margin.right - 100;
     const height = window.innerHeight - margin.top - margin.bottom - 200;
 
-    // Create a dropdown menu for state selection
+    // Create dropdown menu for state selection
     d3.select("#lineChart").html(`
         <label for="stateFilter">Select State:</label>
         <select id="stateFilter"></select>
@@ -90,6 +158,8 @@ function createLineChart(data) {
     });
 
     function updateChart(selectedState) {
+        console.log("Start updateChart"); // Debugging
+
         d3.select("#lineChartContent").html("");
 
         const filteredData = selectedState === "All" ? data : data.filter(d => d.state === selectedState);
@@ -105,7 +175,7 @@ function createLineChart(data) {
             .range([0, width]);
 
         const y = d3.scaleLinear()
-            .domain([0, d3.max(filteredData, d => +d.monthly_deaths_2022)]).nice()
+            .domain([0, d3.max(filteredData, d => getMonthlyDeaths(d, currentYear))]).nice()
             .range([height, 0]);
 
         svg.append("g")
@@ -122,7 +192,7 @@ function createLineChart(data) {
 
         const line = d3.line()
             .x(d => x(new Date(d.month)))
-            .y(d => y(+d.monthly_deaths_2022));
+            .y(d => y(getMonthlyDeaths(d, currentYear)));
 
         const stateGroups = d3.groups(filteredData, d => d.state);
 
@@ -143,13 +213,13 @@ function createLineChart(data) {
           .enter().append("circle")
             .attr("class", "dot")
             .attr("cx", d => x(new Date(d.month)))
-            .attr("cy", d => y(+d.monthly_deaths_2022))
+            .attr("cy", d => y(getMonthlyDeaths(d, currentYear)))
             .attr("r", 5)
             .attr("fill", d => color(d.state))
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("r", 7);
                 tooltip.transition().duration(200).style("opacity", .9);
-                tooltip.html(`State: ${d.state}<br>Month: ${d.month}<br>Deaths: ${d.monthly_deaths_2022}`)
+                tooltip.html(`State: ${d.state}<br>Month: ${d.month}<br>Deaths: ${getMonthlyDeaths(d, currentYear)}`)
                     .style("left", (event.pageX + 5) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })
@@ -163,7 +233,7 @@ function createLineChart(data) {
             .data(stateGroups)
           .enter().append("text")
             .attr("class", "state-label")
-            .attr("transform", d => `translate(${width},${y(d[1][d[1].length - 1].monthly_deaths_2022)})`)
+            .attr("transform", d => `translate(${width},${y(getMonthlyDeaths(d[1][d[1].length - 1], currentYear))})`)
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
             .style("fill", d => color(d[0]))
@@ -180,6 +250,11 @@ function createLineChart(data) {
 }
 
 function createStateComparison(data) {
+
+    console.log("Start createStateComparison"); // Debugging
+
+    d3.select("#comparisonChart").html(""); // Clear existing chart
+
     const margin = { top: 20, right: 30, bottom: 40, left: 90 };
     const width = window.innerWidth - margin.left - margin.right - 100;
     const height = window.innerHeight - margin.top - margin.bottom - 200;
@@ -195,6 +270,9 @@ function createStateComparison(data) {
     `);
 
     const states = Array.from(new Set(data.map(d => d.state)));
+    console.log("State: ", states); // Debugging
+
+
     const state1Select = d3.select("#state1");
     const state2Select = d3.select("#state2");
 
@@ -226,7 +304,7 @@ function createStateComparison(data) {
             .range([0, width]);
 
         const y = d3.scaleLinear()
-            .domain([0, d3.max([...stateData1, ...stateData2], d => +d.monthly_deaths_2022)]).nice()
+            .domain([0, d3.max([...stateData1, ...stateData2], d => getMonthlyDeaths(d, currentYear))]).nice()
             .range([height, 0]);
 
         svg.append("g")
@@ -238,7 +316,7 @@ function createStateComparison(data) {
 
         const line = d3.line()
             .x(d => x(new Date(d.month)))
-            .y(d => y(+d.monthly_deaths_2022));
+            .y(d => y(getMonthlyDeaths(d, currentYear)));
 
         // Add line for state 1
         svg.append("path")
@@ -256,19 +334,19 @@ function createStateComparison(data) {
             .attr("stroke-width", 1.5)
             .attr("d", line);
 
-        // Add dots for state 1
+        // Add dots and tooltips for state 1
         svg.selectAll(".dot1")
             .data(stateData1)
           .enter().append("circle")
             .attr("class", "dot1")
             .attr("cx", d => x(new Date(d.month)))
-            .attr("cy", d => y(+d.monthly_deaths_2022))
+            .attr("cy", d => y(getMonthlyDeaths(d, currentYear)))
             .attr("r", 5)
             .attr("fill", "steelblue")
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("fill", "orange");
                 tooltip.transition().duration(200).style("opacity", .9);
-                tooltip.html(`State: ${state1}<br>Month: ${d.month}<br>Deaths: ${d.monthly_deaths_2022}`)
+                tooltip.html(`State: ${state1}<br>Month: ${d.month}<br>Deaths: ${getMonthlyDeaths(d, currentYear)}`)
                     .style("left", (event.pageX + 5) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })
@@ -277,19 +355,19 @@ function createStateComparison(data) {
                 tooltip.transition().duration(500).style("opacity", 0);
             });
 
-        // Add dots for state 2
+        // Add dots and tooltips for state 2
         svg.selectAll(".dot2")
             .data(stateData2)
           .enter().append("circle")
             .attr("class", "dot2")
             .attr("cx", d => x(new Date(d.month)))
-            .attr("cy", d => y(+d.monthly_deaths_2022))
+            .attr("cy", d => y(getMonthlyDeaths(d, currentYear)))
             .attr("r", 5)
             .attr("fill", "orange")
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("fill", "steelblue");
                 tooltip.transition().duration(200).style("opacity", .9);
-                tooltip.html(`State: ${state2}<br>Month: ${d.month}<br>Deaths: ${d.monthly_deaths_2022}`)
+                tooltip.html(`State: ${state2}<br>Month: ${d.month}<br>Deaths: ${getMonthlyDeaths(d, currentYear)}`)
                     .style("left", (event.pageX + 5) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })
@@ -300,14 +378,14 @@ function createStateComparison(data) {
 
         // Add annotations for state names
         svg.append("text")
-            .attr("transform", `translate(${width},${y(stateData1[stateData1.length - 1].monthly_deaths_2022)})`)
+            .attr("transform", `translate(${width},${getMonthlyDeaths(y(stateData1[stateData1.length - 1], currentYear))})`)
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
             .style("fill", "steelblue")
             .text(state1);
 
         svg.append("text")
-            .attr("transform", `translate(${width},${y(stateData2[stateData2.length - 1].monthly_deaths_2022)})`)
+            .attr("transform", `translate(${width},${getMonthlyDeaths(y(stateData2[stateData2.length - 1], currentYear))})`)
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
             .style("fill", "orange")

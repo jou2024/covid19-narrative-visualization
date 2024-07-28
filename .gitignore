@@ -7,3 +7,6 @@ node_modules/
 # Ignore IDE specific files
 .vscode/
 .idea/
+
+.conda/
+data/archive-not-filtered/

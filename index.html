@@ -9,11 +9,17 @@
 <body>
     <header>
         <h1>COVID-19 Narrative Visualization</h1>
-        <p>An interactive exploration of the impact of COVID-19 in the United States during 2022</p>
+        <p>An interactive exploration of the impact of COVID-19 in the United States during 2020, 2021, and 2022</p>
     </header>
-
     <nav>
-        <ul class="pagination">
+        <ul class="year-tabs">
+            <li><a href="#" data-year="2020" class="active">2020</a></li>
+            <li><a href="#" data-year="2021">2021</a></li>
+            <li><a href="#" data-year="2022">2022</a></li>
+        </ul>
+    </nav>
+    <nav>
+        <ul class="scene-tabs">
             <li><a href="#" data-target="scene1">Total Deaths by State</a></li>
             <li><a href="#" data-target="scene2">Monthly Death Trends</a></li>
             <li><a href="#" data-target="scene3">State Comparison</a></li>
@@ -45,7 +51,7 @@
                 <label for="state2">Select State 2:</label>
                 <select id="state2"></select>
                 <button id="compareButton">Compare</button>
-                <div id="lineChart"></div>
+                <div id="lineChart_compare"></div>
             </div>
         </section>
 

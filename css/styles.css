@@ -17,18 +17,18 @@ nav {
     margin: 20px 0;
 }
 
-.pagination {
+.year-tabs, .scene-tabs {
     list-style: none;
     padding: 0;
     display: inline-block;
 }
 
-.pagination li {
+.year-tabs li, .scene-tabs li {
     display: inline;
     margin: 0 5px;
 }
 
-.pagination li a {
+.year-tabs li a, .scene-tabs li a {
     text-decoration: none;
     padding: 10px 15px;
     color: #007bff;
@@ -37,7 +37,7 @@ nav {
     border-radius: 5px;
 }
 
-.pagination li a:hover {
+.year-tabs li a:hover, .scene-tabs li a:hover, .year-tabs li a.active, .scene-tabs li a.active {
     background-color: #007bff;
     color: #ffffff;
 }
