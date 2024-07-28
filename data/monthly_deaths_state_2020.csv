@@ -1,0 +1,625 @@
+state,month,monthly_deaths_2020
+Alabama,2020-01,0
+Alabama,2020-02,0
+Alabama,2020-03,42
+Alabama,2020-04,4044
+Alabama,2020-05,14438
+Alabama,2020-06,23697
+Alabama,2020-07,38436
+Alabama,2020-08,58883
+Alabama,2020-09,71419
+Alabama,2020-10,85064
+Alabama,2020-11,98538
+Alabama,2020-12,131827
+Alaska,2020-01,0
+Alaska,2020-02,0
+Alaska,2020-03,8
+Alaska,2020-04,173
+Alaska,2020-05,243
+Alaska,2020-06,291
+Alaska,2020-07,496
+Alaska,2020-08,843
+Alaska,2020-09,1265
+Alaska,2020-10,1890
+Alaska,2020-11,2802
+Alaska,2020-12,5136
+Arizona,2020-01,0
+Arizona,2020-02,0
+Arizona,2020-03,118
+Arizona,2020-04,4870
+Arizona,2020-05,19864
+Arizona,2020-06,37510
+Arizona,2020-07,79906
+Arizona,2020-08,138063
+Arizona,2020-09,161423
+Arizona,2020-10,179976
+Arizona,2020-11,189527
+Arizona,2020-12,237564
+Arkansas,2020-01,0
+Arkansas,2020-02,0
+Arkansas,2020-03,36
+Arkansas,2020-04,1007
+Arkansas,2020-05,3137
+Arkansas,2020-06,5895
+Arkansas,2020-07,10829
+Arkansas,2020-08,19077
+Arkansas,2020-09,32549
+Arkansas,2020-10,51328
+Arkansas,2020-11,66765
+Arkansas,2020-12,95245
+California,2020-01,0
+California,2020-02,0
+California,2020-03,1113
+California,2020-04,30176
+California,2020-05,99379
+California,2020-06,155690
+California,2020-07,232621
+California,2020-08,349458
+California,2020-09,438311
+California,2020-10,522654
+California,2020-11,551791
+California,2020-12,683920
+Colorado,2020-01,0
+Colorado,2020-02,0
+Colorado,2020-03,344
+Colorado,2020-04,11715
+Colorado,2020-05,35594
+Colorado,2020-06,48035
+Colorado,2020-07,54290
+Colorado,2020-08,58799
+Colorado,2020-09,60271
+Colorado,2020-10,67610
+Colorado,2020-11,79208
+Colorado,2020-12,127004
+Connecticut,2020-01,0
+Connecticut,2020-02,0
+Connecticut,2020-03,283
+Connecticut,2020-04,29752
+Connecticut,2020-05,101014
+Connecticut,2020-06,125398
+Connecticut,2020-07,135762
+Connecticut,2020-08,138000
+Connecticut,2020-09,134566
+Connecticut,2020-10,141104
+Connecticut,2020-11,143360
+Connecticut,2020-12,170624
+Delaware,2020-01,0
+Delaware,2020-02,0
+Delaware,2020-03,31
+Delaware,2020-04,1840
+Delaware,2020-05,8381
+Delaware,2020-06,13062
+Delaware,2020-07,16554
+Delaware,2020-08,18439
+Delaware,2020-09,18572
+Delaware,2020-10,20617
+Delaware,2020-11,22110
+Delaware,2020-12,26058
+District of Columbia,2020-01,0
+District of Columbia,2020-02,0
+District of Columbia,2020-03,41
+District of Columbia,2020-04,2651
+District of Columbia,2020-05,11296
+District of Columbia,2020-06,15437
+District of Columbia,2020-07,17731
+District of Columbia,2020-08,18495
+District of Columbia,2020-09,18516
+District of Columbia,2020-10,19785
+District of Columbia,2020-11,19873
+District of Columbia,2020-12,22570
+Florida,2020-01,0
+Florida,2020-02,0
+Florida,2020-03,489
+Florida,2020-04,19495
+Florida,2020-05,59664
+Florida,2020-06,89605
+Florida,2020-07,149112
+Florida,2020-08,287667
+Florida,2020-09,385716
+Florida,2020-10,486884
+Florida,2020-11,528358
+Florida,2020-12,625248
+Georgia,2020-01,0
+Georgia,2020-02,0
+Georgia,2020-03,699
+Georgia,2020-04,18051
+Georgia,2020-05,48939
+Georgia,2020-06,73197
+Georgia,2020-07,96401
+Georgia,2020-08,142202
+Georgia,2020-09,188261
+Georgia,2020-10,228370
+Georgia,2020-11,260484
+Georgia,2020-12,307373
+Hawaii,2020-01,0
+Hawaii,2020-02,0
+Hawaii,2020-03,1
+Hawaii,2020-04,274
+Hawaii,2020-05,525
+Hawaii,2020-06,514
+Hawaii,2020-07,673
+Hawaii,2020-08,1257
+Hawaii,2020-09,3146
+Hawaii,2020-10,5681
+Hawaii,2020-11,6751
+Hawaii,2020-12,8405
+Idaho,2020-01,0
+Idaho,2020-02,0
+Idaho,2020-03,34
+Idaho,2020-04,1098
+Idaho,2020-05,2266
+Idaho,2020-06,2628
+Idaho,2020-07,3800
+Idaho,2020-08,8590
+Idaho,2020-09,12732
+Idaho,2020-10,16628
+Idaho,2020-11,23545
+Idaho,2020-12,37822
+Illinois,2020-01,0
+Illinois,2020-02,0
+Illinois,2020-03,450
+Illinois,2020-04,32642
+Illinois,2020-05,125228
+Illinois,2020-06,195076
+Illinois,2020-07,230706
+Illinois,2020-08,247518
+Illinois,2020-09,258320
+Illinois,2020-10,293112
+Illinois,2020-11,341008
+Illinois,2020-12,487330
+Indiana,2020-01,0
+Indiana,2020-02,0
+Indiana,2020-03,313
+Indiana,2020-04,16218
+Indiana,2020-05,52744
+Indiana,2020-06,73069
+Indiana,2020-07,86855
+Indiana,2020-08,97177
+Indiana,2020-09,103916
+Indiana,2020-10,121734
+Indiana,2020-11,150003
+Indiana,2020-12,218744
+Iowa,2020-01,0
+Iowa,2020-02,0
+Iowa,2020-03,26
+Iowa,2020-04,1947
+Iowa,2020-05,10769
+Iowa,2020-06,19631
+Iowa,2020-07,24212
+Iowa,2020-08,30669
+Iowa,2020-09,37216
+Iowa,2020-10,47525
+Iowa,2020-11,61570
+Iowa,2020-12,102151
+Kansas,2020-01,0
+Kansas,2020-02,0
+Kansas,2020-03,60
+Kansas,2020-04,2241
+Kansas,2020-05,5676
+Kansas,2020-06,7457
+Kansas,2020-07,9654
+Kansas,2020-08,12644
+Kansas,2020-09,16808
+Kansas,2020-10,26397
+Kansas,2020-11,38850
+Kansas,2020-12,67842
+Kentucky,2020-01,0
+Kentucky,2020-02,0
+Kentucky,2020-03,84
+Kentucky,2020-04,3889
+Kentucky,2020-05,10848
+Kentucky,2020-06,15726
+Kentucky,2020-07,20877
+Kentucky,2020-08,26308
+Kentucky,2020-09,33249
+Kentucky,2020-10,42363
+Kentucky,2020-11,53507
+Kentucky,2020-12,78888
+Louisiana,2020-01,0
+Louisiana,2020-02,0
+Louisiana,2020-03,1137
+Louisiana,2020-04,32872
+Louisiana,2020-05,75798
+Louisiana,2020-06,91082
+Louisiana,2020-07,109304
+Louisiana,2020-08,139101
+Louisiana,2020-09,157941
+Louisiana,2020-10,177422
+Louisiana,2020-11,184804
+Louisiana,2020-12,215113
+Maine,2020-01,0
+Maine,2020-02,0
+Maine,2020-03,13
+Maine,2020-04,843
+Maine,2020-05,2180
+Maine,2020-06,3010
+Maine,2020-07,3546
+Maine,2020-08,3951
+Maine,2020-09,4108
+Maine,2020-10,4474
+Maine,2020-11,5020
+Maine,2020-12,8509
+Maryland,2020-01,0
+Maryland,2020-02,0
+Maryland,2020-03,84
+Maryland,2020-04,13760
+Maryland,2020-05,59244
+Maryland,2020-06,88044
+Maryland,2020-07,103834
+Maryland,2020-08,112721
+Maryland,2020-09,115669
+Maryland,2020-10,125065
+Maryland,2020-11,130307
+Maryland,2020-12,163321
+Massachusetts,2020-01,0
+Massachusetts,2020-02,0
+Massachusetts,2020-03,340
+Massachusetts,2020-04,42952
+Massachusetts,2020-05,170827
+Massachusetts,2020-06,228975
+Massachusetts,2020-07,259483
+Massachusetts,2020-08,273880
+Massachusetts,2020-09,277353
+Massachusetts,2020-10,300917
+Massachusetts,2020-11,310467
+Massachusetts,2020-12,357261
+Michigan,2020-01,0
+Michigan,2020-02,0
+Michigan,2020-03,967
+Michigan,2020-04,59519
+Michigan,2020-05,148969
+Michigan,2020-06,179464
+Michigan,2020-07,196370
+Michigan,2020-08,204451
+Michigan,2020-09,207890
+Michigan,2020-10,227720
+Michigan,2020-11,255026
+Michigan,2020-12,357241
+Minnesota,2020-01,0
+Minnesota,2020-02,0
+Minnesota,2020-03,47
+Minnesota,2020-04,3818
+Minnesota,2020-05,21878
+Minnesota,2020-06,39472
+Minnesota,2020-07,48459
+Minnesota,2020-08,54441
+Minnesota,2020-09,59400
+Minnesota,2020-10,70493
+Minnesota,2020-11,90661
+Minnesota,2020-12,142668
+Mississippi,2020-01,0
+Mississippi,2020-02,0
+Mississippi,2020-03,88
+Mississippi,2020-04,3972
+Mississippi,2020-05,15804
+Mississippi,2020-06,27336
+Mississippi,2020-07,40931
+Mississippi,2020-08,64526
+Mississippi,2020-09,82125
+Mississippi,2020-10,97849
+Mississippi,2020-11,107108
+Mississippi,2020-12,132830
+Missouri,2020-01,0
+Missouri,2020-02,0
+Missouri,2020-03,96
+Missouri,2020-04,5056
+Missouri,2020-05,17904
+Missouri,2020-06,27450
+Missouri,2020-07,35764
+Missouri,2020-08,45188
+Missouri,2020-09,56366
+Missouri,2020-10,80448
+Missouri,2020-11,105756
+Missouri,2020-12,156027
+Montana,2020-01,0
+Montana,2020-02,0
+Montana,2020-03,12
+Montana,2020-04,280
+Montana,2020-05,502
+Montana,2020-06,581
+Montana,2020-07,1109
+Montana,2020-08,2566
+Montana,2020-09,4277
+Montana,2020-10,7685
+Montana,2020-11,15949
+Montana,2020-12,25905
+Nebraska,2020-01,0
+Nebraska,2020-02,0
+Nebraska,2020-03,13
+Nebraska,2020-04,866
+Nebraska,2020-05,3841
+Nebraska,2020-06,6926
+Nebraska,2020-07,9469
+Nebraska,2020-08,11402
+Nebraska,2020-09,13519
+Nebraska,2020-10,17393
+Nebraska,2020-11,25072
+Nebraska,2020-12,44491
+Nevada,2020-01,0
+Nevada,2020-02,0
+Nevada,2020-03,123
+Nevada,2020-04,4029
+Nevada,2020-05,10678
+Nevada,2020-06,14008
+Nevada,2020-07,19854
+Nevada,2020-08,33381
+Nevada,2020-09,44410
+Nevada,2020-10,52598
+Nevada,2020-11,58319
+Nevada,2020-12,81970
+New Hampshire,2020-01,0
+New Hampshire,2020-02,0
+New Hampshire,2020-03,17
+New Hampshire,2020-04,1009
+New Hampshire,2020-05,5085
+New Hampshire,2020-06,9573
+New Hampshire,2020-07,12246
+New Hampshire,2020-08,13146
+New Hampshire,2020-09,13080
+New Hampshire,2020-10,14313
+New Hampshire,2020-11,15030
+New Hampshire,2020-12,19497
+New Jersey,2020-01,0
+New Jersey,2020-02,0
+New Jersey,2020-03,1165
+New Jersey,2020-04,102708
+New Jersey,2020-05,308935
+New Jersey,2020-06,388821
+New Jersey,2020-07,482461
+New Jersey,2020-08,492942
+New Jersey,2020-09,481278
+New Jersey,2020-10,502729
+New Jersey,2020-11,498695
+New Jersey,2020-12,557416
+New Mexico,2020-01,0
+New Mexico,2020-02,0
+New Mexico,2020-03,16
+New Mexico,2020-04,1472
+New Mexico,2020-05,7739
+New Mexico,2020-06,13155
+New Mexico,2020-07,17513
+New Mexico,2020-08,22130
+New Mexico,2020-09,24979
+New Mexico,2020-10,28959
+New Mexico,2020-11,37834
+New Mexico,2020-12,63226
+New York,2020-01,0
+New York,2020-02,0
+New York,2020-03,7943
+New York,2020-04,425198
+New York,2020-05,854088
+New York,2020-06,918476
+New York,2020-07,995461
+New York,2020-08,1005469
+New York,2020-09,979548
+New York,2020-10,1021540
+New York,2020-11,1007246
+New York,2020-12,1105629
+North Carolina,2020-01,0
+North Carolina,2020-02,0
+North Carolina,2020-03,32
+North Carolina,2020-04,4804
+North Carolina,2020-05,20390
+North Carolina,2020-06,34879
+North Carolina,2020-07,50375
+North Carolina,2020-08,73585
+North Carolina,2020-09,94769
+North Carolina,2020-10,122389
+North Carolina,2020-11,145747
+North Carolina,2020-12,187486
+North Dakota,2020-01,0
+North Dakota,2020-02,0
+North Dakota,2020-03,9
+North Dakota,2020-04,296
+North Dakota,2020-05,1330
+North Dakota,2020-06,2366
+North Dakota,2020-07,2956
+North Dakota,2020-08,3967
+North Dakota,2020-09,5601
+North Dakota,2020-10,11976
+North Dakota,2020-11,22471
+North Dakota,2020-12,36093
+Ohio,2020-01,0
+Ohio,2020-02,0
+Ohio,2020-03,219
+Ohio,2020-04,12517
+Ohio,2020-05,49709
+Ohio,2020-06,77119
+Ohio,2020-07,97128
+Ohio,2020-08,118706
+Ohio,2020-09,134914
+Ohio,2020-10,157317
+Ohio,2020-11,174314
+Ohio,2020-12,240430
+Oklahoma,2020-01,0
+Oklahoma,2020-02,0
+Oklahoma,2020-03,101
+Oklahoma,2020-04,3692
+Oklahoma,2020-05,8877
+Oklahoma,2020-06,10849
+Oklahoma,2020-07,13870
+Oklahoma,2020-08,20766
+Oklahoma,2020-09,27571
+Oklahoma,2020-10,36040
+Oklahoma,2020-11,46241
+Oklahoma,2020-12,65753
+Oregon,2020-01,0
+Oregon,2020-02,0
+Oregon,2020-03,129
+Oregon,2020-04,1829
+Oregon,2020-05,4161
+Oregon,2020-06,5420
+Oregon,2020-07,7946
+Oregon,2020-08,12220
+Oregon,2020-09,15457
+Oregon,2020-10,19245
+Oregon,2020-11,23590
+Oregon,2020-12,38399
+Pennsylvania,2020-01,0
+Pennsylvania,2020-02,0
+Pennsylvania,2020-03,268
+Pennsylvania,2020-04,30595
+Pennsylvania,2020-05,134081
+Pennsylvania,2020-06,188226
+Pennsylvania,2020-07,217270
+Pennsylvania,2020-08,233003
+Pennsylvania,2020-09,239575
+Pennsylvania,2020-10,264555
+Pennsylvania,2020-11,286087
+Pennsylvania,2020-12,408981
+Puerto Rico,2020-01,0
+Puerto Rico,2020-02,0
+Puerto Rico,2020-03,35
+Puerto Rico,2020-04,1450
+Puerto Rico,2020-05,3633
+Puerto Rico,2020-06,4380
+Puerto Rico,2020-07,5485
+Puerto Rico,2020-08,10262
+Puerto Rico,2020-09,16703
+Puerto Rico,2020-10,23298
+Puerto Rico,2020-11,28581
+Puerto Rico,2020-12,40689
+Rhode Island,2020-01,0
+Rhode Island,2020-02,0
+Rhode Island,2020-03,17
+Rhode Island,2020-04,3459
+Rhode Island,2020-05,15471
+Rhode Island,2020-06,25484
+Rhode Island,2020-07,30536
+Rhode Island,2020-08,31771
+Rhode Island,2020-09,32422
+Rhode Island,2020-10,35738
+Rhode Island,2020-11,38173
+Rhode Island,2020-12,48953
+South Carolina,2020-01,0
+South Carolina,2020-02,0
+South Carolina,2020-03,127
+South Carolina,2020-04,3284
+South Carolina,2020-05,11736
+South Carolina,2020-06,18424
+South Carolina,2020-07,35108
+South Carolina,2020-08,70086
+South Carolina,2020-09,92881
+South Carolina,2020-10,112970
+South Carolina,2020-11,124600
+South Carolina,2020-12,149492
+South Dakota,2020-01,0
+South Dakota,2020-02,0
+South Dakota,2020-03,22
+South Dakota,2020-04,211
+South Dakota,2020-05,1278
+South Dakota,2020-06,2282
+South Dakota,2020-07,3471
+South Dakota,2020-08,4707
+South Dakota,2020-09,5746
+South Dakota,2020-10,9767
+South Dakota,2020-11,19937
+South Dakota,2020-12,39407
+Tennessee,2020-01,0
+Tennessee,2020-02,0
+Tennessee,2020-03,59
+Tennessee,2020-04,3741
+Tennessee,2020-05,8850
+Tennessee,2020-06,14450
+Tennessee,2020-07,24839
+Tennessee,2020-08,42831
+Tennessee,2020-09,62682
+Tennessee,2020-10,88765
+Tennessee,2020-11,117769
+Tennessee,2020-12,176044
+Texas,2020-01,0
+Texas,2020-02,0
+Texas,2020-03,270
+Texas,2020-04,12274
+Texas,2020-05,40047
+Texas,2020-06,62054
+Texas,2020-07,126673
+Texas,2020-08,320762
+Texas,2020-09,440263
+Texas,2020-10,539095
+Texas,2020-11,607190
+Texas,2020-12,779112
+Utah,2020-01,0
+Utah,2020-02,0
+Utah,2020-03,20
+Utah,2020-04,722
+Utah,2020-05,2472
+Utah,2020-06,4294
+Utah,2020-07,7305
+Utah,2020-08,11327
+Utah,2020-09,13068
+Utah,2020-10,16605
+Utah,2020-11,21949
+Utah,2020-12,33745
+Vermont,2020-01,0
+Vermont,2020-02,0
+Vermont,2020-03,93
+Vermont,2020-04,958
+Vermont,2020-05,1651
+Vermont,2020-06,1663
+Vermont,2020-07,1738
+Vermont,2020-08,1793
+Vermont,2020-09,1740
+Vermont,2020-10,1798
+Vermont,2020-11,1831
+Vermont,2020-12,3169
+Virginia,2020-01,0
+Virginia,2020-02,0
+Virginia,2020-03,162
+Virginia,2020-04,7019
+Virginia,2020-05,30685
+Virginia,2020-06,47056
+Virginia,2020-07,61641
+Virginia,2020-08,74189
+Virginia,2020-09,86483
+Virginia,2020-10,106447
+Virginia,2020-11,115120
+Virginia,2020-12,140241
+Washington,2020-01,0
+Washington,2020-02,1
+Washington,2020-03,2377
+Washington,2020-04,16938
+Washington,2020-05,30824
+Washington,2020-06,36893
+Washington,2020-07,46101
+Washington,2020-08,57397
+Washington,2020-09,63369
+Washington,2020-10,72562
+Washington,2020-11,80071
+Washington,2020-12,98238
+West Virginia,2020-01,0
+West Virginia,2020-02,0
+West Virginia,2020-03,3
+West Virginia,2020-04,515
+West Virginia,2020-05,1951
+West Virginia,2020-06,2613
+West Virginia,2020-07,3101
+West Virginia,2020-08,4966
+West Virginia,2020-09,8578
+West Virginia,2020-10,12325
+West Virginia,2020-11,17759
+West Virginia,2020-12,32316
+Wisconsin,2020-01,0
+Wisconsin,2020-02,0
+Wisconsin,2020-03,135
+Wisconsin,2020-04,5402
+Wisconsin,2020-05,13922
+Wisconsin,2020-06,21236
+Wisconsin,2020-07,26417
+Wisconsin,2020-08,32504
+Wisconsin,2020-09,36898
+Wisconsin,2020-10,50372
+Wisconsin,2020-11,84560
+Wisconsin,2020-12,139531
+Wyoming,2020-01,0
+Wyoming,2020-02,0
+Wyoming,2020-03,0
+Wyoming,2020-04,82
+Wyoming,2020-05,300
+Wyoming,2020-06,555
+Wyoming,2020-07,710
+Wyoming,2020-08,991
+Wyoming,2020-09,1375
+Wyoming,2020-10,1926
+Wyoming,2020-11,4563
+Wyoming,2020-12,10232
