@@ -83,7 +83,12 @@ function createBarChart(data) {
     console.log("Start to run createBarChart"); // Debugging
     d3.select("#barChart").html(""); // Clear existing chart
 
-    const margin = { top: 20, right: 30, bottom: 40, left: 90 };
+    // Tooltip setup
+    const tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+    const margin = { top: 20, right: 60, bottom: 40, left: 180 };
     const width = window.innerWidth - margin.left - margin.right - 100;
     const height = window.innerHeight - margin.top - margin.bottom - 200;
 
@@ -103,11 +108,15 @@ function createBarChart(data) {
         .padding(0.1);
 
     svg.append("g")
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(y))
+        .selectAll("text")
+        .style("font-size", "16px");
 
     svg.append("g")
         .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x))
+        .selectAll("text")
+        .style("font-size", "18px");
 
     svg.selectAll(".bar")
         .data(data)
@@ -121,11 +130,16 @@ function createBarChart(data) {
             d3.select(this)
               .attr("fill", "orange");
             // Show tooltip or additional data
+            tooltip.transition().duration(200).style("opacity", .9);
+            tooltip.html(`State: ${d.state}<br>Total Deaths: ${getTotalDeaths(d, currentYear)}`)
+                .style("left", (event.pageX + 5) + "px")
+                .style("top", (event.pageY - 28) + "px");
         })
         .on("mouseout", function(event, d) {
             d3.select(this)
               .attr("fill", "steelblue");
             // Hide tooltip or additional data
+            tooltip.transition().duration(500).style("opacity", 0);
         });
 }
 
@@ -133,7 +147,7 @@ function createLineChart(data) {
     console.log("Start createLineChart"); // Debugging
     d3.select("#lineChart").html(""); // Clear existing chart
 
-    const margin = { top: 20, right: 30, bottom: 40, left: 90 };
+    const margin = { top: 20, right: 150, bottom: 40, left: 90 };
     const width = window.innerWidth - margin.left - margin.right - 100;
     const height = window.innerHeight - margin.top - margin.bottom - 200;
 
@@ -255,7 +269,7 @@ function createStateComparison(data) {
 
     d3.select("#comparisonChart").html(""); // Clear existing chart
 
-    const margin = { top: 20, right: 30, bottom: 40, left: 90 };
+    const margin = { top: 20, right: 120, bottom: 40, left: 90 };
     const width = window.innerWidth - margin.left - margin.right - 100;
     const height = window.innerHeight - margin.top - margin.bottom - 200;
 
@@ -309,10 +323,12 @@ function createStateComparison(data) {
 
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
-            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")));
+            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")))
+            .style("font-size", "15px");;
 
         svg.append("g")
-            .call(d3.axisLeft(y));
+            .call(d3.axisLeft(y))
+            .style("font-size", "18px");;
 
         const line = d3.line()
             .x(d => x(new Date(d.month)))
@@ -378,14 +394,14 @@ function createStateComparison(data) {
 
         // Add annotations for state names
         svg.append("text")
-            .attr("transform", `translate(${width},${getMonthlyDeaths(y(stateData1[stateData1.length - 1], currentYear))})`)
+            .attr("transform", `translate(${width},${y(getMonthlyDeaths(stateData1[stateData1.length - 1], currentYear))})`)
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
             .style("fill", "steelblue")
             .text(state1);
 
         svg.append("text")
-            .attr("transform", `translate(${width},${getMonthlyDeaths(y(stateData2[stateData2.length - 1], currentYear))})`)
+            .attr("transform", `translate(${width},${y(getMonthlyDeaths(stateData2[stateData2.length - 1], currentYear))})`)
             .attr("dy", ".35em")
             .attr("text-anchor", "start")
             .style("fill", "orange")
