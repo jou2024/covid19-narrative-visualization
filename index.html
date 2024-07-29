@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COVID-19 Narrative Visualization</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://d3-annotation.susielu.com/assets/d3.annotation.js"></script> 
 </head>
 <body>
     <header>
@@ -27,20 +29,19 @@
     <main>
         <section id="scene1" class="scene">
             <h2>Total Deaths by State</h2>
+            <div class="overview">Overview text for 2022 Total Deaths by State.</div>
             <div id="barChart"></div>
-            <!-- <aside>
-                <h3>Notes</h3>
-                <p>Not including Virgin Islands, American Samoa, Guam, or North Mariana Islands.</p>
-            </aside> -->
         </section>
 
         <section id="scene2" class="scene">
             <h2>Monthly Death Trends</h2>
+            <div class="overview">Overview text for 2022 Monthly Death Trends.</div>
             <div id="lineChart"></div>
         </section>
 
         <section id="scene3" class="scene">
             <h2>State Comparison</h2>
+            <div class="overview">Overview text for 2022 State Comparison.</div>
             <div id="comparisonChart">
                 <!-- Dropdowns and charts will be appended here by D3 -->
                 <label for="state1">Select State 1:</label>
@@ -52,10 +53,12 @@
             </div>
         </section>
 
-        <!-- <section id="sceneNext" class="scene">
+        <section id="sceneNext" class="scene">
             <h2>Conclusion</h2>
+            <div class="overview">Summary and conclusion of the narrative visualization.</div>
             <p>Summary and conclusion of the narrative visualization.</p>
-        </section> -->
+        </section>
+
     </main>
 
     <nav>
@@ -72,6 +75,7 @@
     </footer>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script> 
     <script src="js/script.js?v=1.0.1"></script> <!-- Increment version number when updating -->
 </body>
 </html>

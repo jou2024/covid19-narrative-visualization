@@ -233,3 +233,12 @@ nav.scene-navigation {
     align-items: center;
     margin: 10px 0;  /* Shortened margin */
 }
+
+.overview {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    font-size: 14px;
+}
