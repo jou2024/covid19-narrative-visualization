@@ -1,8 +1,90 @@
-const yearTabs = document.querySelectorAll('.year-tabs a');
+const yearTabs = document.querySelectorAll('.year-tabs a[data-year]');
+const prevYearBtn = document.getElementById('prevYear');
+const nextYearBtn = document.getElementById('nextYear');
 const sceneTabs = document.querySelectorAll('.scene-tabs a');
 const scenes = document.querySelectorAll('.scene');
 
 let currentYear = '2022'; // Default year
+
+// Event listener for year tabs
+yearTabs.forEach(tab => {
+    tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        currentYear = this.getAttribute('data-year');
+        loadYear(currentYear);
+    });
+});
+
+// Event listener for scene tabs
+sceneTabs.forEach(tab => {
+    tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = this.getAttribute('data-target');
+        showScene(target);
+    });
+});
+
+// Event listener for previous and next year buttons
+prevYearBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (currentYear === '2021') {
+        currentYear = '2020';
+    } else if (currentYear === '2022') {
+        currentYear = '2021';
+    }
+    loadYear(currentYear);
+    updateYearButtons();
+});
+
+nextYearBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (currentYear === '2020') {
+        currentYear = '2021';
+    } else if (currentYear === '2021') {
+        currentYear = '2022';
+    }
+    loadYear(currentYear);
+    updateYearButtons();
+});
+
+// Function to load data and update visualizations for the selected year
+function loadYear(year) {
+    yearTabs.forEach(tab => tab.classList.remove('active'));
+    document.querySelector(`.year-tabs a[data-year="${year}"]`).classList.add('active');
+    loadDataForYear(year);
+    updateYearButtons();
+}
+
+// Function to update the state of year navigation buttons
+function updateYearButtons() {
+    prevYearBtn.classList.toggle('disabled', currentYear === '2020');
+    nextYearBtn.classList.toggle('disabled', currentYear === '2022');
+}
+
+// Function to show the selected scene
+function showScene(sceneId) {
+    scenes.forEach(scene => scene.classList.remove('active'));
+    document.getElementById(sceneId).classList.add('active');
+}
+
+// Function to load data for the selected year
+function loadDataForYear(year) {
+    d3.csv(`data/total_deaths_state_${year}.csv`).then(totalDeathsData => {
+        d3.csv(`data/monthly_deaths_state_${year}.csv`).then(monthlyDeathsData => {
+            createBarChart(totalDeathsData);
+            createLineChart(monthlyDeathsData);
+            createStateComparison(monthlyDeathsData);
+        }).catch(error => {
+            console.error(`Error loading monthly deaths data for ${year}: `, error);
+        });
+    }).catch(error => {
+        console.error(`Error loading total deaths data for ${year}: `, error);
+    });
+}
+
+// Initialize with the default year
+loadYear('2022');
+showScene('scene1');
 
 // Event listener for year tabs
 yearTabs.forEach(tab => {

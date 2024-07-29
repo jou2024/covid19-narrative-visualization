@@ -14,7 +14,7 @@ header {
 
 nav {
     text-align: center;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .year-tabs, .scene-tabs {
@@ -43,11 +43,11 @@ nav {
 }
 
 main {
-    padding: 20px;
+    padding: 10px;
 }
 
 .scene {
-    margin: 40px 0;
+    margin: 20px 0;
     padding: 20px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -127,4 +127,109 @@ select {
 }
 .state-label {
     font: 12px sans-serif;
+}
+
+.year-tabs li a.disabled {
+    color: grey;
+    pointer-events: none;
+}
+
+.year-tabs li {
+    display: inline;
+    margin: 0 5px;
+}
+
+.year-tabs li a {
+    text-decoration: none;
+    padding: 10px 15px;
+    color: #007bff;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.year-tabs li a:hover, .year-tabs li a.active {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.disabled {
+    pointer-events: none;
+    color: grey;
+}
+
+nav.year-navigation {
+    display: flex;
+    justify-content: space-between; /* Adjusts the alignment of the navigation buttons */
+    align-items: center;
+    margin: 10px 0; /* Reduce the margin to shorten the distance between tabs and the scene */
+}
+
+nav.year-navigation {
+    display: flex;
+    justify-content: space-between; /* Keeps the buttons on the ends */
+    align-items: center;
+    margin: 10px 0; /* Reduce the margin to shorten the distance between tabs and the scene */
+}
+
+.year-navigation .year-tabs {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1; /* Distribute space evenly */
+}
+
+.year-navigation .year-tabs li {
+    list-style: none;
+    margin: 0 5px;
+}
+
+nav.year-navigation .nav-button {
+    text-decoration: none;
+    padding: 10px 30px; /* Increase padding for bigger buttons */
+    color: #007bff;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    margin: 0 10px; /* Add margin to separate from the year tabs */
+    position: relative; /* Position relative for pseudo-elements */
+}
+
+nav.year-navigation .nav-button::before {
+    content: '‹'; /* Add left arrow */
+    position: absolute;
+    left: 10px;
+}
+
+nav.year-navigation .nav-button#nextYear::before {
+    content: ''; /* Remove arrow for the next button */
+}
+
+nav.year-navigation .nav-button::after {
+    content: '›'; /* Add right arrow */
+    position: absolute;
+    right: 10px;
+}
+
+nav.year-navigation .nav-button#prevYear::after {
+    content: ''; /* Remove arrow for the previous button */
+}
+
+nav.year-navigation .nav-button:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+}
+
+nav.year-navigation .nav-button.disabled {
+    pointer-events: none;
+    color: grey;
+}
+
+
+
+/* Ensure the scene navigation is centered */
+nav.scene-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;  /* Shortened margin */
 }
